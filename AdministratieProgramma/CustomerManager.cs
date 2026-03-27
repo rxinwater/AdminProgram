@@ -65,13 +65,17 @@ namespace AdministratieProgramma
                 Console.WriteLine($"ID: {index}.| Name: {c.Name} | Adress: {c.Address} | Age: {c.Age} | Phone number: {c.Phone}");
                 index++;
             }
+
+            menu.three = false;
+            menu.four = false;
+
             menu.ReturnToMenu(this, true, " , 3 to edit details, or 4 to remove a customer.");
             if (menu.three)
             {
                 EditDetails();
                 menu.three = false;
             }
-            if (menu.four)
+            else if (menu.four)
             {
                 RemoveCustomer("Removal succesfull");
                 menu.four = false;
