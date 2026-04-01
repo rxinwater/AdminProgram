@@ -8,7 +8,7 @@ namespace AdministratieProgramma
 {
     internal class Menu
     {
-
+        CustomerManager admin = new CustomerManager();
         public bool three;
         public bool four;
 
