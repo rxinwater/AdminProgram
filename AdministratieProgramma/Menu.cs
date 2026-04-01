@@ -11,7 +11,7 @@ namespace AdministratieProgramma
         CustomerManager admin = new CustomerManager();
         public bool three;
         public bool four;
-
+        // comment!
         public void MainMenu(CustomerManager customermanager)
         {
             Console.Clear();
