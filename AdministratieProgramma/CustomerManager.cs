@@ -1,23 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+
 
 namespace AdministratieProgramma
 {
     internal class CustomerManager
     {
         private readonly List<Customer> customers = new List<Customer>();
-        private readonly Menu menu = new Menu();
         private int _age;
         private string _ageInput;
      
 
-        public void AddFromInput(string succesMessage)
+        public void AddFromInput(string succesMessage, Menu menu)
         {
             Console.Clear();
             Console.Write("Enter name: ");
@@ -43,10 +37,10 @@ namespace AdministratieProgramma
             customers.Add(new Customer(name, address, _age, phone));
 
             Console.WriteLine();
-            menu.ReturnToMenu(this, false, "");
+            menu.ReturnToMenu(false, "");
            
         }
-        public void ShowAllCustomers()
+        public void ShowAllCustomers(Menu menu)
         {
             Console.Clear();
             if (customers.Count == 0)
@@ -56,7 +50,7 @@ namespace AdministratieProgramma
                 string input = Console.ReadLine();
 
                 bool flag = input != null;
-                if (flag) menu.MainMenu(this);
+                if (flag) menu.MainMenu();
             }
 
             int index = 1;
@@ -66,20 +60,9 @@ namespace AdministratieProgramma
                 index++;
             }
 
-            menu.three = false;
-            menu.four = false;
 
-            menu.ReturnToMenu(this, true, " , 3 to edit details, or 4 to remove a customer.");
-            if (menu.three)
-            {
-                EditDetails();
-                menu.three = false;
-            }
-            else if (menu.four)
-            {
-                RemoveCustomer("Removal succesfull");
-                menu.four = false;
-            }
+            menu.ReturnToMenu(true, " , 3 to edit details, or 4 to remove a customer.");
+          
         }
         public Customer idSelection()
         {
@@ -107,7 +90,7 @@ namespace AdministratieProgramma
             return customer;
         }
 
-        public void EditDetails()
+        public void EditDetails(Menu menu)
         {
             Customer customerToEdit = idSelection();
 
@@ -146,19 +129,19 @@ namespace AdministratieProgramma
 
             Console.Clear();
             Console.WriteLine("Customer details updated successfully!");
-            menu.ReturnToMenu(this, false, "");
+            menu.ReturnToMenu(false, "");
 
 
         }
 
-        public void RemoveCustomer(string successMessage)
+        public void RemoveCustomer(string successMessage, Menu menu)
         {
            Customer customer = idSelection();
             if (customers.Remove(customer))
             {
                 Console.Clear();
                 Console.WriteLine(successMessage);
-                menu.ReturnToMenu(this, false, "");
+                menu.ReturnToMenu(false, "");
              
             }
             else

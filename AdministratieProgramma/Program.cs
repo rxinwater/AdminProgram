@@ -12,8 +12,7 @@ namespace AdministratieProgramma
         public static void Main()
         {
             Menu menu = new Menu();
-            CustomerManager admin = new CustomerManager();
-            menu.MainMenu(admin);
+            menu.MainMenu();
         }
     }
 }

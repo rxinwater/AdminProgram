@@ -9,10 +9,9 @@ namespace AdministratieProgramma
     internal class Menu
     {
         CustomerManager admin = new CustomerManager();
-        public bool three;
-        public bool four;
-        // comment!
-        public void MainMenu(CustomerManager customermanager)
+
+
+        public void MainMenu()
         {
             Console.Clear();
             Console.WriteLine("Welcome! To get started please choose one of the following by typing only their respective number.");
@@ -37,11 +36,11 @@ namespace AdministratieProgramma
             switch (userInput)
             {
                 case 1:
-                    customermanager.AddFromInput("Customer added succesfully.");
+                    admin.AddFromInput("Customer added succesfully.", this);
                     break;
 
                 case 2:
-                    customermanager.ShowAllCustomers();
+                    admin.ShowAllCustomers(this);
                     break;
 
                 case 3:
@@ -51,7 +50,7 @@ namespace AdministratieProgramma
         }
 
 
-        public void ReturnToMenu(CustomerManager customermanager, bool showCustomer, string moreFunctionality) 
+        public void ReturnToMenu(bool showCustomer, string moreFunctionality) 
         {
             int optionChosen;
 
@@ -85,7 +84,7 @@ namespace AdministratieProgramma
             switch (optionChosen)
             {
                 case 1:
-                    MainMenu(customermanager);
+                    MainMenu();
                     break;
 
                 case 2:
@@ -93,11 +92,11 @@ namespace AdministratieProgramma
                     break;
 
                 case 3:
-                    three = true;
+                    admin.EditDetails(this);
                     break;
 
                 case 4:
-                    four = true;
+                    admin.RemoveCustomer("Succesfully removed customer!",this);
                     break;
             }
 
